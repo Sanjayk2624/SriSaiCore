@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Shell Core Shooter Machine",
+    "price": 15000,
+    "category": "Machinery",
+    "description": "High-efficiency shell core shooter used in foundry core production.",
+    "image": "/images/products/shell_core_shooter.jpg"
+  },
+  {
+    "name": "Foundry Sand Mixer",
+    "price": 20000,
+    "category": "Machinery",
+    "description": "Industrial sand mixer for consistent and high-quality sand preparation.",
+    "image": "/images/products/sand_mixer.jpg"
+  },
+  {
+    "name": "Shell Core Mold",
+    "price": 13000,
+    "category": "Accessories",
+    "description": "Durable shell core molds for casting applications in foundries.",
+    "image": "/images/products/shell_core_mold.jpg"
+  },
+  {
+    "name": "Shell Core Heater",
+    "price": 18000,
+    "category": "Machinery",
+    "description": "Energy-efficient heater for shell core production processes.",
+    "image": "/images/products/core_heater.jpg"
+  },
+  {
+    "name": "Automatic Core Shooter",
+    "price": 25000,
+    "category": "Machinery",
+    "description": "Fully automatic core shooter for increased production capacity.",
+    "image": "/images/products/auto_core_shooter.jpg"
+  },
+  {
+    "name": "Resin Coated Sand",
+    "price": 5000,
+    "category": "Materials",
+    "description": "Premium resin coated sand for high-quality shell core molds.",
+    "image": "/images/products/resin_sand.jpg"
+  },
+  {
+    "name": "Core Baking Oven",
+    "price": 14000,
+    "category": "Machinery",
+    "description": "Used to cure and harden shell cores efficiently.",
+    "image": "/images/products/core_oven.jpg"
+  },
+  {
+    "name": "Hydraulic Press Machine",
+    "price": 22000,
+    "category": "Machinery",
+    "description": "High pressure hydraulic press for heavy-duty operations.",
+    "image": "/images/products/hydraulic_press.jpg"
+  },
+  {
+    "name": "Core Inspection Table",
+    "price": 10000,
+    "category": "Accessories",
+    "description": "Inspection table designed for visual and dimensional checking of cores.",
+    "image": "/images/products/inspection_table.jpg"
+  },
+  {
+    "name": "Mould Assembly Bench",
+    "price": 8000,
+    "category": "Accessories",
+    "description": "Ergonomic bench for assembling molds and cores.",
+    "image": "/images/products/assembly_bench.jpg"
+  },
+  {
+    "name": "Dust Collector System",
+    "price": 15000,
+    "category": "Machinery",
+    "description": "Dust extraction system for maintaining clean working environment.",
+    "image": "/images/products/dust_collector.jpg"
+  },
+  {
+    "name": "Pneumatic Lifting Arm",
+    "price": 11000,
+    "category": "Accessories",
+    "description": "Lifting arm for handling heavy molds and tools.",
+    "image": "/images/products/lifting_arm.jpg"
+  },
+  {
+    "name": "Shell Core Sand Hopper",
+    "price": 9000,
+    "category": "Machinery",
+    "description": "Sand hopper for continuous supply of resin coated sand.",
+    "image": "/images/products/sand_hopper.jpg"
+  },
+  {
+    "name": "Core Box Cleaning Gun",
+    "price": 5000,
+    "category": "Tools",
+    "description": "Air-powered cleaning gun for core boxes and molds.",
+    "image": "/images/products/cleaning_gun.jpg"
+  }
+]
