@@ -4,10 +4,12 @@ import { useState } from 'react';
 import axios from '../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,6 +39,7 @@ export default function Register() {
   
       toast.success('Registered and logged in successfully!');
       navigate(user.role === 'admin' ? '/admin' : '/products');
+      login(token, user);
     } catch (err) {
       console.error(err.response?.data);
       const msg = err.response?.data?.message || 'Registration failed!';

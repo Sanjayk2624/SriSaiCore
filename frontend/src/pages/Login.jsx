@@ -1,12 +1,16 @@
 // pages/Login.jsx
-import { useState } from 'react';
+import { use, useState } from 'react';
 import axios from '../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+  const { login } = useAuth();
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,6 +21,13 @@ export default function Login() {
     try {
       const res = await axios.post('/api/auth/login', form);
       const { token, user } = res.data;
+
+      login(token, user);
+
+      if (!token) {
+        toast.error('Login failed: No token received');
+        return;
+      }
   
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
@@ -36,6 +47,8 @@ export default function Login() {
   
       if (user.role === 'admin') {
         navigate('/admin');
+      }else if (user.role === 'delivery') {
+        navigate('/delivery');
       } else {
         navigate('/products');
       }
@@ -43,7 +56,6 @@ export default function Login() {
       toast.error(err.response?.data?.message || 'Login failed!');
     }
   };
-  
 
   return (
     <form onSubmit={handleLogin} className="max-w-md mx-auto p-6 mt-6 border rounded shadow">

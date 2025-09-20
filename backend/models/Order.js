@@ -1,4 +1,3 @@
-// --- models/order.js ---
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
@@ -11,6 +10,10 @@ const orderSchema = new mongoose.Schema({
     }
   ],
   total: Number,
+  shippingFee: {
+    type: Number,
+    default: 0,
+  },
   shipping: {
     name: String,
     email: String,

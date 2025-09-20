@@ -14,7 +14,7 @@ export const protect = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // ✅ Support hardcoded admin token without DB lookup
+    // ✅ Hardcoded admin shortcut (optional)
     if (decoded.role === 'admin') {
       req.user = { email: decoded.email, role: 'admin' };
       return next();
@@ -32,3 +32,18 @@ export const protect = async (req, res, next) => {
   }
 };
 
+// ✅ Admin route guard
+export const isAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Admin access required' });
+  }
+  next();
+};
+
+// ✅ Delivery person route guard
+export const isDelivery = (req, res, next) => {
+  if (req.user.role !== 'delivery') {
+    return res.status(403).json({ message: 'Delivery access required' });
+  }
+  next();
+};

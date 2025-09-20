@@ -44,7 +44,7 @@ export default function AdminLayout() {
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar (Desktop & Mobile) */}
       <aside
-        className={`fixed md:relative z-50 bg-purple-800 text-white w-64 p-4 space-y-6 transition-transform transform duration-300 ease-in-out ${
+        className={`fixed md:relative z-50 bg-gray-900 text-white w-64 p-4 space-y-6 transition-transform transform duration-300 ease-in-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
@@ -62,7 +62,7 @@ export default function AdminLayout() {
               key={item.name}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded transition duration-200 ${
-                  isActive ? 'bg-purple-900 shadow-md' : 'hover:bg-purple-700'
+                  isActive ? 'bg-gray-900 shadow-md' : 'hover:bg-gray-700'
                 }`
               }
               onClick={() => setSidebarOpen(false)} // auto-close on mobile
@@ -94,7 +94,7 @@ export default function AdminLayout() {
         <div className="md:hidden mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold">Admin Dashboard</h2>
           <button onClick={() => setSidebarOpen(true)}>
-            <Menu className="w-6 h-6 text-purple-800" />
+            <Menu className="w-6 h-6 bg-gray-800" />
           </button>
         </div>
 

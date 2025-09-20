@@ -7,11 +7,23 @@ export const getCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id });
     if (!cart) return res.json({ items: [] });
-    res.json(cart);
+
+    const enrichedItems = await Promise.all(
+      cart.items.map(async (item) => {
+        const product = await Product.findById(item.productId);
+        return {
+          ...item.toObject(),
+          stock: product?.stock || 0, // 🔄 Add latest stock
+        };
+      })
+    );
+
+    res.json({ items: enrichedItems });
   } catch (err) {
     res.status(500).json({ message: 'Failed to get cart', error: err.message });
   }
 };
+
 
 // Add item to cart
 export const addToCart = async (req, res) => {

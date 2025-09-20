@@ -68,6 +68,16 @@ export default function AdminProducts() {
                 <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
                 <p className="text-sm text-gray-500">{product.category}</p>
                 <p className="text-blue-600 font-bold text-lg">₹{product.price}</p>
+
+                <p className={`text-sm font-medium ${product.stock <= 5 ? 'text-red-600' : 'text-gray-500'}`}>
+                  In Stock: {product.stock}
+                  {product.stock <= 3 && (
+                    <span className="ml-1 px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full">
+                      Low 
+                    </span>
+                  )}
+                </p>
+
               </div>
               <div className="flex justify-between items-center pt-2">
                 <button

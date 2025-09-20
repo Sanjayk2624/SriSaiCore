@@ -24,7 +24,7 @@ export default function AdminUsers() {
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow rounded">
           <thead>
-            <tr className="bg-purple-800 text-white">
+            <tr className="bg-gray-800 text-white">
               <th className="p-3 text-left">Name</th>
               <th className="p-3 text-left">Email</th>
               <th className="p-3 text-left">Role</th>

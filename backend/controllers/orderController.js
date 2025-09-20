@@ -1,6 +1,7 @@
 // --- controllers/orderController.js ---
 // --- controllers/orderController.js ---
 import Order from '../models/Order.js';
+import Product from '../models/Product.js'; 
 
 // 🧾 Create a new order
 export const createOrder = async (req, res) => {
@@ -25,6 +26,15 @@ export const createOrder = async (req, res) => {
       paymentStatus: paymentStatus || (paymentMethod === 'Online' ? 'Paid' : 'Pending'),
       status: 'Pending'
     });
+
+    // ✅ Reduce stock for each product
+    for (const item of items) {
+      const product = await Product.findOne({ name: item.name }); // or use productId if available
+      if (product) {
+        product.stock = Math.max(0, product.stock - item.quantity);
+        await product.save();
+      }
+    }
 
     res.status(201).json(order);
   } catch (err) {
@@ -71,7 +81,6 @@ export const updateOrderStatus = async (req, res) => {
     const { id } = req.params;
     const { status, paymentStatus } = req.body; // ✅ Destructure both fields
 
-    // ✅ Build dynamic update object
     const updatedFields = {};
     if (status) updatedFields.status = status;
     if (paymentStatus) updatedFields.paymentStatus = paymentStatus;
@@ -90,4 +99,5 @@ export const updateOrderStatus = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 

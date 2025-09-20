@@ -12,7 +12,8 @@ import orderRoutes from './routes/orderRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
-
+import deliveryRoutes from './routes/deliveryRoutes.js';
+import deliveryAuthRoutes from './routes/deliveryAuthRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,6 +31,8 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/pay', paymentRoutes);
+app.use('/api/delivery', deliveryRoutes);
+app.use('/api/delivery-auth', deliveryAuthRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI)

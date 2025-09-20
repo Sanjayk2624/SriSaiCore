@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from '../utils/axiosInstance'
 
 export default function ProductModal({ product, onClose, onRefresh }) {
+  // Default form values to ensure they are controlled
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -15,13 +16,14 @@ export default function ProductModal({ product, onClose, onRefresh }) {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    // Only set the form values if product is available
     if (product) {
       setForm({
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        category: product.category,
-        stock: product.stock,
+        name: product.name || '',
+        description: product.description || '',
+        price: product.price || '',
+        category: product.category || '',
+        stock: product.stock || '',
       });
     }
   }, [product]);
@@ -50,14 +52,18 @@ export default function ProductModal({ product, onClose, onRefresh }) {
       },
     };
 
-    if (product) {
-      await axios.put(`/api/products/${product._id}`, formData, config);
-    } else {
-      await axios.post('/api/products', formData, config);
-    }
+    try {
+      if (product) {
+        await axios.put(`/api/products/${product._id}`, formData, config);
+      } else {
+        await axios.post('/api/products', formData, config);
+      }
 
-    onClose();
-    onRefresh();
+      onClose(); // Close modal on success
+      onRefresh(); // Refresh product list after adding/updating
+    } catch (error) {
+      console.error('Error while submitting product', error);
+    }
   };
 
   return (
@@ -72,7 +78,7 @@ export default function ProductModal({ product, onClose, onRefresh }) {
               key={field}
               name={field}
               placeholder={field[0].toUpperCase() + field.slice(1)}
-              value={form[field]}
+              value={form[field] || ''} // Default to empty string if undefined
               onChange={handleChange}
               className="w-full border px-3 py-2 rounded"
               required

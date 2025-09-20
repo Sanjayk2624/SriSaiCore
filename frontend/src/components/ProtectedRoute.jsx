@@ -1,15 +1,20 @@
 // src/components/ProtectedRoute.jsx
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function ProtectedRoute({ children, adminOnly = false }) {
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
+export default function ProtectedRoute({ children, adminOnly = false, allowedRoles = [] }) {
+  const { token, user } = useAuth();
 
-  if (!token) {
+  // ⚠️ Wait for context to fully load before checking role
+  if (!token || !user) {
     return <Navigate to="/login" replace />;
   }
 
-  if (adminOnly && (!user || user.role !== 'admin')) {
+  if (adminOnly && user.role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
+
+  if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
     return <Navigate to="/" replace />;
   }
 

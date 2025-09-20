@@ -52,7 +52,7 @@ export default function Admin() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 w-64 h-screen bg-purple-800 text-white p-4 z-50 transform transition-transform duration-300 ease-in-out 
+        className={`fixed top-0 left-0 w-64 h-screen bg-gray-800 text-white p-4 z-50 transform transition-transform duration-300 ease-in-out 
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
           md:translate-x-0 md:relative md:flex-shrink-0 md:block overflow-y-auto`}
       >
@@ -62,9 +62,10 @@ export default function Admin() {
             <NavLink
               to={item.path}
               key={item.name}
+              end={item.path === '/admin'}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded hover:bg-purple-700 transition ${
-                  isActive ? 'bg-purple-700' : ''
+                `flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-600 transition ${
+                  isActive ? 'bg-gray-600' : ''
                 }`
               }
               onClick={() => setSidebarOpen(false)}
@@ -73,12 +74,12 @@ export default function Admin() {
             </NavLink>
           ))}
         </nav>
-        <button
+        {/* <button
           onClick={handleLogout}
           className="flex items-center gap-2 mt-6 text-sm bg-red-600 hover:bg-red-700 px-3 py-2 rounded"
         >
           <LogOut className="w-4 h-4" /> Logout
-        </button>
+        </button> */}
       </aside>
 
       {/* Main content wrapper */}
